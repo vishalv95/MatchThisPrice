@@ -1,0 +1,16 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @invoice_form.name %>
+</p>
+
+<ol>
+<% for invoice_field in @invoice_form.invoice_fields %>
+	<li><%=h invoice_field.description %></li>
+<% end %>
+</ol>
+
+<%= link_to 'Edit', edit_invoice_form_path(@invoice_form) %> |
+<%= link_to 'Delete', @survey, :confirm => 'Are you sure?', :method => :delete %> |
+<%= link_to 'Back', invoice_forms_path %>

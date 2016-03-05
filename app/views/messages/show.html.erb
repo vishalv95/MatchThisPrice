@@ -1,15 +1,44 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+<script src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+<script>
+$(function () {
+  $('#switch').change(function () {                
+     if($(this).prop("checked")){
+	     $('#user_comments').show();
+	     $('#company_responses').hide();
+     } else{
+	     $('#user_comments').hide();
+	     $('#company_responses').show();
+     }
+  }); 
+});
+</script>
+</head>
+
+<input type="checkbox" data-on-text="" data-off-text="" data-role="flipswitch" name="switch" id="switch">
 <div class="col-md-8 col-md-offset-2">
 	<div class="message-show">
 		<h2><%= @message.title %></h2>
 		<p class="message-posted-by">Posted by <%= @message.user.email %> <%= time_ago_in_words(@message.created_at) %> ago</p>
 		<p class="message-description"><%= @message.description %></p>
 
+		    <div id="user_comments">
+				<h3>Comments:</h3>
+				<%= render @message.comments %>
+				<h3 class="reply-to-msg">Reply to the Project:</h3>
+				<%= render 'comments/form' %>
+			</div>				
+			
+			<div id="company_responses">
+				<h3>Company Responses:</h3>
+				<%= render @message.responses %> 
+				<h3 class="reply-to-msg">Reply to the Project:</h3>
+				<%= render 'responses/form' %>
+			</div>
 
-		<h3>Comments:</h3>
-		<%= render @message.comments %>
-		<h3 class="reply-to-msg">Reply to the Project:</h3>
-		<%= render 'comments/form' %>
-		
 		<div class="links btn-group">
 			<%= link_to "Back", root_path, class: "btn btn-default" %>
 			<% if  user_signed_in? %>

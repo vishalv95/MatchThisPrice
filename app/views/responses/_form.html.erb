@@ -1,0 +1,4 @@
+<%= simple_form_for([@message, @message.responses.build]) do |f| %>
+		<%= f.input :content, label: "Respond" %>
+		<%= f.button :submit, :class => 'btn-custom' %>
+<% end %>

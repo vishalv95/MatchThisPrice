@@ -1,0 +1,13 @@
+<div class="comment">
+	<p class="comment-content"><%= response.content %></p>
+	<p class="comment-posted-by">Posted by <%= response.company.email %> <%= time_ago_in_words(response.created_at) %> ago</p>
+	
+	<div class="links">
+		<% if  company_signed_in? %>
+			<% if response.company_id == current_company.id %>
+				<%= link_to "Edit", edit_message_response_path(response.message, response) %>
+				<%= link_to "Delete", message_response_path(response.message, response), method: :delete, data: {confirm: "Are you sure?"} %>
+			<% end %>
+		<% end %>
+	</div>
+</div>

@@ -8,7 +8,7 @@
   <%= f.fields_for :fields do |builder| %>
   	<%= render 'field_fields', f: builder %>
   <% end %>
-  <%= link_to_add_fields "Add Field", f, :fields %>
+  <%= link_to_add_fields "Add Line Item", f, :fields %>
 
   <div class="form-actions">
     <%= f.button :submit %>
